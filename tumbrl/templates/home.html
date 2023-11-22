@@ -1,0 +1,32 @@
+{% extends "perry.html" %}
+
+{% block titulo %} Login {% endblock %}
+
+{% block body %}
+
+    <div class="base">
+        <h1>Fazer Login</h1>
+        <form method="POST">
+            {{ form.csrf_token }}
+
+            {{ form.email.label()}}
+            {{ form.email}}
+
+            {{ form.password.label() }}
+            {{ form.password }}
+
+            {{ form.btn(class="testando") }}
+
+        <a href=" {{ url_for('createAccount') }} "> Cadastrar </a>
+
+        </form>
+    </div>
+    <div class="info">
+        <img src="https://media4.giphy.com/media/WYyvz9PIhjLHgiyvR2/giphy.webp?cid=82a1493bv6qoqae9tv0lus3mhgiudq74s36848kr9zv6koyk&ep=v1_gifs_trending&rid=giphy.webp&ct=g" alt="gif">
+        <br>
+        <h1>Manual de Uso:</h1><br>
+        <p>1 - Cadastrar use (http://127.0.0.1:5000/new)</p><br>
+        <p>2 - Home use (http://127.0.0.1:5000/ ou /home)</p><br>
+    </div>
+
+{% endblock %}

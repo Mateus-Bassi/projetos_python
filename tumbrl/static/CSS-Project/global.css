@@ -1,0 +1,35 @@
+body{
+    background-color: #f58442;
+}
+.base{
+    margin: auto;
+    width: 80%;
+    background-color: black;
+    color : white;
+    padding: 20px;
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    text-align: center;
+}
+.info{
+    width: 80%;
+    margin: auto;
+    padding: 10px;
+}
+.testando{
+    background-color: #f58442;
+}
+
+label{
+    text-align: left;
+    width: 150px;
+    display:inline-block;
+    font-weight: bold;
+    border-radius: 10px;
+    margin-top: 10px;
+}
+input{
+    display: inline-block;
+    width: auto;
+    margin-bottom: 5px; /*Aqui selecionamos o tamanho do espaco entre os input*/
+}

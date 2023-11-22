@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    
+    <title>Configuração do Classificador {{ classifier | upper }}</title>
+    
+    <style>
+        body {
+            background-color: #0d1117; /* Cor de fundo azul marinho */
+            color: #c9d1d9; /* Cor do texto */
+        }
+        .container {
+            padding-top: 50px; /* Espaçamento no topo */
+        }
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        .errors {
+            color: #ff6b81; /* Cor de erro */
+        }
+        .img-confusion-matrix {
+            width: 100%;
+            max-width: 600px;
+            height: auto;
+            display: block;
+            margin: 20px auto; /* Centraliza a imagem */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <h1 class="text-center">Configuração do Classificador {{ classifier | upper }}</h1>
+                
+                <!-- Botão para voltar à seleção de classificador -->
+                <form action="{{ url_for('index') }}" method="get" class="mb-4">
+                    <button type="submit" class="btn btn-primary">Escolher Outro Classificador</button>
+                </form>
+
+                <!-- Formulário do classificador -->
+                <form action="{{ url_for('select_classifier', classifier=classifier) }}" method="post">
+                    {{ form.hidden_tag() }}
+                    {% for field in form %}
+                        <div class="form-group">
+                            {{ field.label }}
+                            {{ field(class_='form-control') }}
+                            {% if field.errors %}
+                                <ul class="errors">
+                                    {% for error in field.errors %}
+                                        <li>{{ error }}</li>
+                                    {% endfor %}
+                                </ul>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                    <button type="submit" class="btn btn-success">Treinar Classificador</button>
+                </form>
+
+                <!-- Imagem da Matriz de Confusão -->
+                {% if matrix_image %}
+                    <h2 class="text-center">Matriz de Confusão</h2>
+                    <img src="{{ url_for('static', filename=matrix_image) }}" alt="Matriz de Confusão" class="img-confusion-matrix">
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS, Popper.js, and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
